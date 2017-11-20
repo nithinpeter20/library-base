@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/style.css') }}"> {% block title %}Admin {% endblock %}
+</head>
+
+<body id="page2">
+    <div class="header">
+        <div id=heading> Admin-Page</div>
+        <div class="logined_user">{{current_user.username}}</div>
+    </div>
+
+    <div class="logout">
+        <a class="logout-button" href="{{ url_for('auth.logout') }}">Logout</a>
+    </div>
+
+
+
+    <div class="admin-navbar">
+
+        <div class="nav-header-blocks">
+            <li>
+                <a href="{{ url_for('admin.admin_books') }}">Books</a>
+            </li>
+        </div>
+        <div class="nav-header-blocks">
+            <li>
+                <a href="{{ url_for('admin.admin_authors') }}">Authors</a>
+            </li>
+        </div>
+        <div class="nav-header-blocks">
+            <li>
+                <a href="{{ url_for('admin.lend_request') }}">Lend Request</a>
+            </li>
+        </div>
+        <div class="nav-header-blocks">
+            <li>
+                <a href="{{ url_for('admin.return_request') }}">Return Request</a>
+            </li>
+        </div>
+    </div>
+
+    <div class="main-page">
+        <div class=admin-container>
+            {% block content %} {% endblock %}
+        </div>
+    </div>
+</body>

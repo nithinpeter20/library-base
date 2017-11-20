@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/style.css') }}"> {% block title %}Admin {% endblock %}
+</head>
+
+<body id="page3">
+
+
+    <div class="header">
+        <div id=heading> User-Page
+
+        <div class="logined_user">{{current_user.username}}</div>
+
+                   {% set userid = current_user.id %}
+
+            <div class="logout">
+                <a class="logout-button" href="{{ url_for('auth.logout') }}">Logout</a>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="admin-navbar">
+
+        <div class="nav-header-blocks">
+            <li>
+                <a href="{{ url_for('user.user_books') }}">Books</a>
+            </li>
+        </div>
+
+        
+        <div class="nav-header-blocks">
+            <li>
+                <a href="{{ url_for('user.lend_request',user_id =userid) }}">Lend Request</a>
+            </li>
+        </div>
+
+
+        
+        <div class="nav-header-blocks">
+            <li>
+                <a href="{{ url_for('user.borrowed_books', user_id =userid) }}">Borrowed Books</a>
+            </li>
+        </div>
+
+        <div class="nav-header-blocks">
+            <li>
+                <a href="{{ url_for('user.books_returned') }}">Returned Books</a>
+            </li>
+        </div>
+
+    
+    </div>
+
+    <div class="main-page">
+        <div class=admin-container>
+            {% block content %} {% endblock %}
+        </div>
+    </div>
+
+
+</body>

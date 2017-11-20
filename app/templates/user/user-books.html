@@ -1,0 +1,23 @@
+{% extends "user-base.html" %} {% block title %} User Books {% endblock %} {% block content %}
+
+
+
+{% for book in books %}
+<div class="container-boxes">
+
+<form action="" method="POST" enctype="multipart/form-data">
+
+{% for bookphoto in bookphotos %} 
+{% if book.book_id == bookphoto.book_id %}
+<a href="{{ url_for('user.book_details',book_id=bookphoto.book_id)}}"><img class="picture-area" src="{{ url_for('admin.get_book',filename=bookphoto.path) }}"></a>
+
+        
+        {% endif %} 
+        {% endfor %}
+
+
+    </form>
+</div>
+
+{% endfor %}
+{% endblock %}

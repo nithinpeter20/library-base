@@ -1,0 +1,24 @@
+
+{% import "bootstrap/wtf.html" as wtf %}
+{% extends "admin-base.html" %} 
+{% block title %} Admin Books {% endblock %} 
+
+{% block content %}
+
+        <div class="transbox_create-form">
+
+            <br/> {{ wtf.quick_form(form) }}
+
+            
+
+
+
+
+
+
+        </div>
+        <div class=flash_msg>
+            {% import "bootstrap/utils.html" as utils %} {{ utils.flashed_messages() }}
+        </div>
+
+{% endblock %}

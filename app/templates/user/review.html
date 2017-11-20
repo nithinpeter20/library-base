@@ -1,0 +1,16 @@
+{% import "bootstrap/wtf.html" as wtf %} {% extends "user-base.html" %} {% block title %} Review {% endblock %} {% block content %}
+
+<div class="review-box">
+    <form method="POST" enctype="multipart/form-data">
+        <br/>{{ form.review(cols="50", rows="50") }}
+        <div class="submit">
+            <input type="submit" value="Submit Review" />
+        </div>
+    </form>
+</div>
+
+<div class=flash_msg>
+    {% import "bootstrap/utils.html" as utils %} {{ utils.flashed_messages() }}
+</div>
+
+{% endblock %}

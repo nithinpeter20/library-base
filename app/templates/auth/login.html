@@ -1,0 +1,40 @@
+<!DOCTYPE html> {% import "bootstrap/wtf.html" as wtf %} {% import "bootstrap/utils.html" as utils %}
+<html lang="en">
+
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/style.css') }}">
+
+</head>
+
+<body id="page1">
+    <div class=header>
+        <div id=heading>Library Management System</div>
+           <div class=tagbar>
+              <div class=register>
+                <input class="tagbutton1" type="button" value='Register' onclick="location.href='/register';">
+              </div>
+              <div class=login>
+                <input class="tagbutton1" type="button" value='Home' onclick="location.href='/';">
+              </div>
+           </div>
+    </div>
+
+    <div class="content-section">
+        <div class="content-section-heading">
+            <h1>Login for an account</h1>
+        </div>
+        
+        <div class="transbox_login">
+            <br/> {{ wtf.quick_form(form) }}
+        </div>
+
+    </div>
+    
+    <div class=flash_msg>
+        {% import "bootstrap/utils.html" as utils %} {{ utils.flashed_messages() }}
+    </div>
+
+</body>
+
+</html>

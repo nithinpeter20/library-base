@@ -1,0 +1,61 @@
+{% extends "user-base.html" %} {% block title %} Book Details {% endblock %} 
+
+{% block content %}
+
+{% set userid = current_user.id %}
+
+<div class="creat_book">
+    <a class="create-button" href="{{ url_for('user.lend_form',userid=userid,book_id=book.book_id) }}">Borrow Book</a>
+</div>
+
+<div class="container-boxes">
+
+
+
+     
+           <img src="{{ url_for('user.send_book',book_id=book_id) }}" >
+
+
+
+        
+
+
+        <div class="text-area">
+
+            <td> Book: {{ book.name }} </td>
+            </br>
+            {% for author in authors %}
+            {% if book.author_id == author.author_id %}
+            <td> Author: {{ author.author_name}} </td>
+            {% endif %}
+            {% endfor %}
+
+            </br>
+            <td> Publication Date: {{ book.publication_date}}</td>
+            </br>
+            <td> Rating: {{ book.rating }} </td>
+            </br>
+
+
+            {% for breview in book_review %} 
+            {% if book.book_id == breview.book_id %}
+                <td>Review :{{ breview.review }} </td>
+                </br>
+            {% endif %}
+            {% endfor %}
+
+            </br>
+
+            <td> Count: {{ book.book_count }} </td>
+
+        </div>
+
+            <div class=flash_msg>
+        {% import "bootstrap/utils.html" as utils %} {{ utils.flashed_messages() }}
+    </div>
+
+</div>
+
+
+{% endblock %}
+

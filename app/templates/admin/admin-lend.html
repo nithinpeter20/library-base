@@ -1,0 +1,52 @@
+{% extends "admin-base.html" %} {% block title %} Admin Lend{% endblock %} {% block content %}
+
+
+
+
+
+<div class="table-boxes">
+
+
+    <table>
+        <thead>
+            <tr>
+                <th>Lend id</th>
+                <th>User id</th>
+                <th>Book id</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Approve</th>
+                <th>Reject</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for lends in lend %}
+            <tr>
+                <td>{{ lends.lend_id }} </td>
+                
+                {% for user in users %} 
+                {% if lends.user_id == user.id %}
+                <td>{{ user.username }} </td>
+                {% endif %}
+                {% endfor %}
+
+                {% for book in books %} 
+                {% if lends.book_id == book.book_id %}
+                <td>{{ book.name }} </td>
+                {% endif %}
+                {% endfor %}
+                
+                <td>{{lends.date}}</td>
+                <td>{{lends.status}}</td>
+                <td><a class="accept-button"  href="{{ url_for('admin.lend_approve', lend_id=lends.lend_id) }}">Approve</a></td>
+                <td><a class="reject-button"  href="{{ url_for('admin.lend_reject', lend_id=lends.lend_id )}}">Reject</a></td>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    
+</div>
+
+{% endblock %}

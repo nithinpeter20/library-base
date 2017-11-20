@@ -1,0 +1,66 @@
+{% extends "user-base.html" %} {% block title %} User Borrowed Books{% endblock %} {% block content %}
+
+
+
+{% set userid = current_user.id %}
+
+<div class="table-boxes">
+
+
+    <table>
+        <thead>
+            <tr>
+                <th>Lend id</th>
+                <th>User name</th>
+                <th>Book name</th>
+                <th>Date</th>
+                <th>Return</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for lends in lend %}
+            {% if lends.user_id == userid %}
+            <tr>
+
+                <td>{{ lends.lend_id }} </td>
+
+
+                {% for user in users %} 
+                {% if lends.user_id == user.id %}
+                <td>{{ user.username }} </td>
+                {% endif %}
+                {% endfor %}
+
+                {% for book in books %} 
+                {% if lends.book_id == book.book_id %}
+                <td>{{ book.name }} </td>
+                {% endif %}
+                {% endfor %}
+
+                <td>{{lends.date}}</td>
+                
+                
+                <td><a class="create-button" href="{{ url_for('user.returned_books', 
+                                                               lend_id=lends.lend_id,
+                                                               user_id=lends.user_id,
+                                                               book_id=lends.book_id) }}">Return Book</a></td>
+
+               
+                
+                
+                
+
+
+
+            </tr>
+            {% endif %}
+
+            {% endfor %}
+
+        </tbody>
+    </table>
+
+    
+</div>
+
+{% endblock %}

@@ -1,0 +1,69 @@
+{% extends "user-base.html" %} {% block title %} User Returned Books{% endblock %} {% block content %}
+
+
+
+
+{% set userid = current_user.id %}
+
+<div class="table-boxes">
+
+
+    <table>
+        <thead>
+            <tr>
+                <th>Return id </th>
+                <th>Lend id</th>
+                <th>User name</th>
+                <th>Book name</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Review</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for rbook in rbooks %}
+            {% if rbook.user_id == userid %}
+            <tr>
+                <td>{{ rbook.return_id}}</td>
+                <td>{{ rbook.lend_id }} </td>
+
+                {% for user in users %} 
+                {% if rbook.user_id == user.id %}
+                <td>{{ user.username }} </td>
+                {% endif %}
+                {% endfor %}
+
+                {% for book in books %} 
+                {% if rbook.book_id == book.book_id %}
+                <td>{{ book.name }} </td>
+                {% endif %}
+                {% endfor %}
+
+
+                <td>{{ rbook.date}}</td>
+                <td>{{ rbook.status}}</td>
+
+                {% if rbook.status == "Received" %}
+                <td><a class="create-button" href="{{ url_for('user.book_review', 
+                                                               return_id=rbook.return_id,
+                                                               user_id=rbook.user_id,
+                                                               book_id=rbook.book_id) }}">Write Review</a></td>
+
+                
+                {% else %}
+                <td><a class="create-button" href="#">Write Review</a></td>
+                {% endif %}
+
+
+
+
+            </tr>
+            {% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
+
+    
+</div>
+
+{% endblock %}

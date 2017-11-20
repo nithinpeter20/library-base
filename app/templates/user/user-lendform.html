@@ -1,0 +1,18 @@
+{% import "bootstrap/wtf.html" as wtf %}
+ 
+
+
+{% extends "user-base.html" %} {% block title %} Book Details {% endblock %} 
+
+
+{% block content %}
+
+        <div class="transbox_register">
+            <br/> {{ wtf.quick_form(form) }}
+        </div>
+
+        <div class=flash_msg>
+            {% import "bootstrap/utils.html" as utils %} {{ utils.flashed_messages() }}
+        </div>
+
+{% endblock %}

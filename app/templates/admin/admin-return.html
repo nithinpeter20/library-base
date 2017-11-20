@@ -1,0 +1,55 @@
+{% extends "admin-base.html" %} 
+{% block title %} Admin return {% endblock %} 
+
+{% block content %} 
+
+<div class="table-boxes">
+
+
+    <table>
+        <thead>
+            <tr>
+                <th>Return id </th>
+                <th>Lend id</th>
+                <th>User id</th>
+                <th>Book id</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Accept</th>
+                <th>Reject</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for rbook in rbooks %}
+            <tr>
+                <td>{{ rbook.return_id}}</td>
+                <td>{{ rbook.lend_id }} </td>
+
+
+                {% for user in users %} 
+                {% if rbook.user_id == user.id %}
+                <td>{{ user.username }} </td>
+                {% endif %}
+                {% endfor %}
+
+                {% for book in books %} 
+                {% if rbook.book_id == book.book_id %}
+                <td>{{ book.name }} </td>
+                {% endif %}
+                {% endfor %}
+
+
+                <td>{{ rbook.date}}</td>
+                <td>{{ rbook.status}}</td>
+                <td><a class="accept-button"  href="{{ url_for('admin.return_approve',
+                        return_id=rbook.return_id,user_id=rbook.user_id) }}">Accept</a></td>
+                <td><a class="reject-button"  href="{{ url_for('admin.return_reject', return_id=rbook.return_id )}}">Reject</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    
+</div>
+
+{% endblock %}
